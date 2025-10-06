@@ -1,7 +1,7 @@
 # DevOps & SRE Notes
 This repository contains Personal notes for DevOps which covers below topics.
 
-- ☁️ Cloud Platforms (AWS, GCP, Azure)
+- ☁️ Cloud Platforms: AWS
 - 🐧 Linux
 - 🐳 Docker & Containerization
 - ☸️ Kubernetes & Helm
