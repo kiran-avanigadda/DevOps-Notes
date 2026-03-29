@@ -221,6 +221,8 @@ Ans: These files store user, group, and authentication-related information in Li
 **- /etc/fstab:** Contains information about file systems and how they are mounted.  
 **- /etc/os-release:** Provides OS details like version and distribution.
 
+---
+
 #### User Management Commands in Linux:
 
 ** sudo usermod -aG devops,admin,qa <username>:**  
@@ -228,14 +230,11 @@ Adds an existing user to multiple groups (devops, admin, qa).
 - -a → append (do not remove from existing groups)  
 - -G → specify groups  
 
----
 
 **→ sudo useradd -r -s /sbin/nologin <username>:**  
 Creates a system user without login access.  
 - -r → system account  
 - -s /sbin/nologin → disables login shell  
-
----
 
 **→ sudo usermod -aG sudo engineer:**  
 Adds the user `engineer` to the sudo group (grants admin privileges).
