@@ -175,6 +175,8 @@ Ans: In Linux, the `tar` command is commonly used to compress and extract files 
 - z → decompress using gzip  
 - f → specifies file name
 
+**→ `rsync -avz /opt/logs user@remote:/backup/logs`:** This command is used to copy/sync the `/opt/logs` directory to a remote server.
+
 ---
 
 **→ `du -h --max-depth=1 / | sort -hr | head` :** This command is used to find the largest directories in the root (`/`) directory.
@@ -184,6 +186,10 @@ Ans: In Linux, the `tar` command is commonly used to compress and extract files 
 **→ `grep "connection refused" /var/log/app.log | tail` :** This command is used to find recent occurrences of the message "connection refused" in a log file.
 
 **→ `find /var/log -type f -name "*.log" -exec du -sh {} + | sort -hr | head -n 10` :** This command is used to find the 10 largest log files in the `/var/log` directory.
+
+**→ `lsblk or fdisk -l` :** Commands to Check Attached Disks in Linux.
+
+---
 
 #### Difference Between grep and egrep:
 
@@ -260,4 +266,108 @@ Used in SSH login between servers for secure and automated access.
 
 ---
 
-**→ `rsync -avz /opt/logs user@remote:/backup/logs`: This command is used to copy/sync the `/opt/logs` directory to a remote server.
+#### Security Hardening in Linux:
+Ans: Security hardening is the process of securing a Linux system by reducing vulnerabilities and minimizing attack surfaces.
+
+**→ Best Practices:**
+- Disable unnecessary services and ports  
+- Apply regular security patches and updates  
+- Use strong passwords and enable SSH key authentication  
+- Configure firewall (iptables/firewalld)  
+- Set proper file permissions and ownership  
+- Disable root login via SSH  
+- Enable logging and monitoring  
+
+---
+
+#### Service Not Restarting in Linux – Additional Checks:
+Ans: Along with basic troubleshooting, we should also check system-level logs, hardware status, and mount points.
+
+**- dmesg Logs:**  
+`dmesg | tail`  
+- Checks kernel messages for hardware or driver-related issues  
+
+**- System Logs:**  
+`/var/log/messages` or `/var/log/syslog`  
+- General system errors and service-related issues  
+
+**- Auth Logs:**  
+`/var/log/auth.log` or `/var/log/secure`  
+- Checks authentication or permission-related failures  
+
+**- Mount Paths:**  
+`df -h` and `mount`  
+- Ensure required file systems are mounted and accessible  
+- Service may fail if dependent mount is missing  
+
+**- Hardware Issues:**  
+- Check disk errors, CPU, memory issues  
+- Use: `dmesg`, `smartctl`, `lscpu`, `free -m`
+
+**- Application/Error Logs:**  
+- Check service-specific logs (e.g., `/var/log/<service>/`)  
+- Helps identify exact failure reason
+
+---
+
+#### Which Protocol Does `ping` command Use:
+Ans: The `ping` command uses the ICMP (Internet Control Message Protocol).
+
+**- ICMP:**  
+- Used for sending echo request and echo reply messages  
+- Helps check network connectivity between systems
+
+---
+
+#### Disk Full Error but `df -h` Shows Free Space:
+Ans: This issue usually happens due to hidden disk usage, inode exhaustion, or deleted files still being used by processes.
+
+**- Check Inodes Usage:**  
+`df -i`  
+- Disk may have free space but no inodes left  
+
+
+**- Check Deleted Files Still in Use:**  
+`lsof | grep deleted`  
+- Files deleted but still held by running processes  
+- Restart the process/service to release space  
+
+
+**- Check Disk Usage Properly:**  
+`du -sh /*`  
+- Identify which directory is consuming space  
+
+
+**- Check Mounted Filesystems:**  
+`mount`  
+- Verify correct mount points (sometimes data is written to wrong/unmounted path)  
+
+
+**- Check Hidden Files:**  
+`du -ah / | sort -hr | head`  
+- Find large hidden files  
+
+
+**- Check Logs:**  
+- Large log files in `/var/log/`  
+- Rotate or clean logs if needed  
+
+**Resolution:**
+- Clear unused files/logs  
+- Restart services holding deleted files  
+- Free up inodes if exhausted  
+- Fix incorrect mount issues  
+
+---
+
+#### What are Inodes in Linux:
+Ans: Inodes are data structures in Linux that store metadata about a file, but not the actual file content.
+
+**→ What Inodes Store:**  
+- File size  
+- File permissions  
+- Owner and group  
+- Timestamps (created, modified, accessed)  
+- Location of data blocks on disk
+
+---
