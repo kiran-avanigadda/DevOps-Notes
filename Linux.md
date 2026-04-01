@@ -371,3 +371,35 @@ Ans: Inodes are data structures in Linux that store metadata about a file, but n
 - Location of data blocks on disk
 
 ---
+
+#### What is a file descriptor?
+Ans: A file descriptor is a unique number assigned by the Linux kernel to identify an open file or resource.
+
+**- What it represents:** It can represent files, sockets, pipes, or input/output streams  
+
+**- Common File Descriptors:**  
+- 0 → Standard Input (stdin)  
+- 1 → Standard Output (stdout)  
+- 2 → Standard Error (stderr) 
+
+---
+
+#### Other imp commands in Linux:
+
+**→ `lsattr` :** List the attributes of the file/directory in linux.
+
+**→ `netstat` :** Displayes n/w connections. It is replaced by `ss` command recently.
+
+**→ `telnet` :** Tests connectivity on a remote host on a specific port.
+
+**→ `apt-get` :** It is the legacy tool for package operations.
+
+**→ `uname` :** Displayes system info like kernel version.
+
+**→ `lscpu` :** Displayes the CPU architecture info.
+
+**→ `iostat` :** Displayes CPU & IO stats.
+
+**→ `renice` :** Changes the priority of a running process. Usage: renice -n <priority> -p <PID>
+
+---
